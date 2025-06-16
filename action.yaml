@@ -38,6 +38,14 @@ inputs:
       The refresh will be limited to these resources and their dependencies.
     required: false
     default: ""
+  exclude:
+    description: |
+      List of resources to exclude from the refresh operation, one per line.
+      The refresh will include all resources except the specified ones and their dependencies.
+
+      Requires OpenTofu 1.9+.
+    required: false
+    default: ""
   parallelism:
     description: Limit the number of concurrent operations
     required: false
@@ -77,7 +85,7 @@ runs:
   env:
     OPENTOFU: true
   using: docker
-  image: docker://ghcr.io/dflook/terraform-github-actions@sha256:290d578d413241ec6245a906ee9a6812f15e6caf6e3fd70b9e7098fc47dc9a60
+  image: docker://ghcr.io/dflook/terraform-github-actions@sha256:795a512ebeb28e04e56cfceda98488e01e20f5b47778c4a929c868e619e3803c
   entrypoint: /entrypoints/refresh.sh
 
 branding:
